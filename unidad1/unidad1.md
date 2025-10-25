@@ -5,7 +5,7 @@ title: "Sprint 1: Instal·lació, Configuració Inicial i Programari de Base"
 
 ## Lección 1. ¿Qué es la IA? De la mente humana a las máquinas inteligentes
 
-- [Material teórico (PDF)](3.Coneixement del Dret i les Llicencies.pdf)
+- [Material teórico (PDF)](file:///home/alumnat/Baixades/IMPLANTACI%C3%93N%20(MIREIA)/Conocimiento%20de%20las%20Licencias.pdf)
 - [Material teórico (PDF)](https://github.com/mireiaconsarnau/machine_learning/raw/main/unidad1/l1.pdf)
 - [Vídeo de recapitulación de conceptos clave (YOUTUBE)](https://youtu.be/p27AhdHxi_o)
 
