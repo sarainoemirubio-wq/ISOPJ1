@@ -16,11 +16,4 @@ El contenido está bajo licencia [Creative Commons BY-NC-SA 3.0 ES](LICENSE.md).
 ## Contenido del curso
 
 ### [Sprint 1: Instal·lació, Configuració Inicial i Programari de Base](unidad1/unidad1.md)  
-### [Unidad 2. Preprocesamiento de datos: preparando la base del aprendizaje automático](unidad2/unidad2.md)  
-### [Unidad 3. Aprendizaje supervisado: modelos para análisis predictivo](unidad3/unidad3.md)  
-### [Unidad 4. Aprendizaje no supervisado: modelos de agrupación y análisis de patrones](unidad4/unidad4.md)  
-### [Unidad 5. Redes neuronales y modelos avanzados de aprendizaje automático](unidad5/unidad5.md)  
-
-### [Relación entre Unidades y Resultados de Aprendizaje (RAs)](ras.md)  
-
-### [FAQs](faqs/faqs.md)  
+### [Sprint 2.Instal·lació, Configuració de Programari de Base i Gestió de Fitxers ](sprint2/sprint2.md)  
