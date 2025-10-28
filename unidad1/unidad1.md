@@ -5,7 +5,7 @@ title: "Sprint 1: Instal·lació, Configuració Inicial i Programari de Base"
 
 ## Lección 1. ¿Qué es la IA? De la mente humana a las máquinas inteligentes
 
-- [Material teórico (PDF)](https://github.com/sarainoemirubio-wq/ISOPJ1/blob/86d79e705e5b83a02f8d802d84bf245f544e3199/unidad1/Conocimiento%20de%20las%20Licencias.pdf)
+- [Material teórico (Licencias.PDF)](https://github.com/sarainoemirubio-wq/ISOPJ1/blob/86d79e705e5b83a02f8d802d84bf245f544e3199/unidad1/Conocimiento%20de%20las%20Licencias.pdf)
 - [Material teórico (PDF)](https://github.com/mireiaconsarnau/machine_learning/raw/main/unidad1/l1.pdf)
 - [Vídeo de recapitulación de conceptos clave (YOUTUBE)](https://youtu.be/p27AhdHxi_o)
 
