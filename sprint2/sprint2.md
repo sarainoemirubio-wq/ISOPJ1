@@ -138,8 +138,9 @@ GParted confirma que las dos particiones (/dev/sdb1 y /dev/sdb2) se crearon corr
 
 <img width="707" height="215" alt="image" src="https://github.com/user-attachments/assets/c8d93f73-15b7-4ad2-b12b-c831071d6ef9" />
 
+aquí muestro la edición del archivo de configuración fundamental de Linux, /etc/fstab, para asegurar que la partición montada siga accesible después de cada reinicio.
 
-<img width="707" height="215" alt="image" src="https://github.com/user-attachments/assets/e04d8c70-1c19-480f-809d-6b4f0789f0d5" />
+<img width="478" height="111" alt="image" src="https://github.com/user-attachments/assets/6e60849b-255e-4c39-bd25-552ff5ab81db" />
 
 
 Esta imagen nos dice que el montaje es exitoso, la partición /dev/sdb1 ahora está montada y accesible en /mnt/particio1/.
@@ -149,6 +150,15 @@ El archivo adeu que se creó antes del montaje ha desaparecido del listado porqu
 La partición /dev/sdb1 está ahora totalmente operativa para guardar datos del sistema.
 
 
+<img width="731" height="282" alt="image" src="https://github.com/user-attachments/assets/8ac90bf7-8d21-461c-9aca-3a9f271d968b" />
+
+aquí vemos cómo el usuario prueba que tiene permisos de escritura y que el sistema de ficheros está funcionando correctamente en la partición recién montada.
+
+
+<img width="434" height="68" alt="image" src="https://github.com/user-attachments/assets/58558e1f-ce21-4a02-bb11-cec6ccf6714d" />
+
+
+y este es el resultado final
 
 #### Comandes
 
@@ -159,6 +169,27 @@ Estas son las comandas de uso diario para interactuar con los ficheros y directo
 
 ## Gestió de processos
 ## Gestió d’usuaris i grups
+
+Linux es un sistema operativo multiusuario. Esto significa que puede ser utilizado por múltiples personas al mismo tiempo, cada una con su propia cuenta y sus propios permisos.
+
+El Grupo Principal (Primary Group) es el grupo al que pertenece un usuario por defecto y el más importante en términos de permisos de acceso.
+
+<img width="937" height="680" alt="image" src="https://github.com/user-attachments/assets/26dced85-5fdc-411c-9e3e-1bd5d48156a2" />
+
+
+Cuando un usuario crea un nuevo archivo o directorio, el grupo asignado a ese nuevo elemento será, automáticamente, su grupo principal.
+
+¿Cómo se crea? (Modelo User Private Group - UPG)
+En la mayoría de las distribuciones modernas de Linux (como Red Hat, Fedora, Ubuntu, etc.), se utiliza un modelo llamado User Private Group (UPG).
+
+
+
+<img width="693" height="550" alt="image" src="https://github.com/user-attachments/assets/1c03b903-b60a-4b9a-9db6-ecb10a0acfe5" />
+
+<img width="702" height="409" alt="image" src="https://github.com/user-attachments/assets/b1132751-935c-4286-a5d5-b65ce3f8bfad" />
+
+
+Aquí vemos las comandas que necessitamos
 
 
 ## Còpies de seguretat i automatització de tasques
