@@ -86,8 +86,15 @@ Crea la estructura del sistema de ficheros (tabla de asignación de archivos, di
 
 Normalmente, solo borra los contenidos de los ficheros (los "oculta") al reescribir la tabla de contenidos, pero los datos son recuperables hasta que son sobrescritos.
 
+<img width="828" height="291" alt="image" src="https://github.com/user-attachments/assets/88bfa03d-81c1-4712-ab3b-3d9c4fa5cc3c" />
+
+
+A quí podemos se ha completado la preparación lógica de la primera partición (/dev/sdb1) que vemos la aprtición más adelante. Se le ha aplicado un Formateo de Alto Nivel para crear un sistema de ficheros Ext4, especificando un tamaño de bloque de 2 KB.
 
 ### Gestió de particions
+
+<img width="687" height="630" alt="image" src="https://github.com/user-attachments/assets/b74e68f2-9a71-4b9a-a28a-69ff104ce349" />
+
 
 La gestión de particiones es el proceso de crear, modificar, eliminar y formatear las divisiones del disco.
 
@@ -112,8 +119,35 @@ Aquí estamos en el proceso de inicializar y particionar un disco duro nuevo (/d
 
 Luego de esto guardamis los cambios (w) y luego formatear la nueva partición usando mkfs para poder montarla y usarla.
 
-Para hacer una segunda partición 
+Para hacer una segunda partición hemos continuado el proceso y creado una segunda partición primaria (/dev/sdb2) en el mismo disco (/dev/sdb). Esta segunda partición ocupa el resto del espacio disponible en el disco y tiene un tamaño de 12.6 GB
+
 <img width="778" height="280" alt="image" src="https://github.com/user-attachments/assets/fff393d2-7858-48c9-a14e-309979352759" />
+
+He aquí vemos el resultado de las dos particiones
+
+<img width="582" height="226" alt="image" src="https://github.com/user-attachments/assets/b7d88357-84f1-4e50-9e8b-237dd1e526cb" />
+
+
+Ahora veremos como se ve lo que hemos hecho pero en GPARTED
+
+<img width="785" height="262" alt="image" src="https://github.com/user-attachments/assets/18dce9e9-87b9-4dcb-b386-bbc33543872f" />
+
+
+GParted confirma que las dos particiones (/dev/sdb1 y /dev/sdb2) se crearon correctamente en términos de tamaño y ubicación. Sin embargo, muestra un problema o desactualización al no reconocer el Sistema de Ficheros en ninguna de las dos (incluso en la que ya fue formateada), lo cual se indica con la etiqueta desconegut y el símbolo de advertencia.
+
+
+<img width="707" height="215" alt="image" src="https://github.com/user-attachments/assets/c8d93f73-15b7-4ad2-b12b-c831071d6ef9" />
+
+
+<img width="707" height="215" alt="image" src="https://github.com/user-attachments/assets/e04d8c70-1c19-480f-809d-6b4f0789f0d5" />
+
+
+Esta imagen nos dice que el montaje es exitoso, la partición /dev/sdb1 ahora está montada y accesible en /mnt/particio1/.
+
+El archivo adeu que se creó antes del montaje ha desaparecido del listado porque ha sido "ocultado" por el contenido de la partición /dev/sdb1. Si el usuario desmontara la partición (umount /mnt/particio1/), el archivo adeu volvería a aparecer.
+
+La partición /dev/sdb1 está ahora totalmente operativa para guardar datos del sistema.
+
 
 
 #### Comandes
