@@ -170,6 +170,9 @@ Estas son las comandas de uso diario para interactuar con los ficheros y directo
 ## Gestió de processos
 ## Gestió d’usuaris i grups
 
+<img width="1024" height="1024" alt="image" src="https://github.com/user-attachments/assets/469bb666-3fcc-4af3-b4d4-46f86784d688" />
+
+
 Linux es un sistema operativo multiusuario. Esto significa que puede ser utilizado por múltiples personas al mismo tiempo, cada una con su propia cuenta y sus propios permisos.
 
 El Grupo Principal (Primary Group) es el grupo al que pertenece un usuario por defecto y el más importante en términos de permisos de acceso.
@@ -225,8 +228,69 @@ La comanda /etc/gshadow, es el espejo seguro del archivo /etc/group. Este es fun
 
 Aquí podemos ver la creación de un usuario nuevo-
 
-Cómo bloquear a un usuario
-Cómo desbloquear un usuario
+
+<img width="772" height="578" alt="image" src="https://github.com/user-attachments/assets/13ab937e-c14c-4189-a693-e0ab40cc35dd" />
+
+<img width="607" height="553" alt="image" src="https://github.com/user-attachments/assets/6be4eda7-3e5b-41e0-a34c-721b1b1eab56" />
+
+Estos son dos ejemplos de cración de usuarios
+
+<img width="918" height="134" alt="image" src="https://github.com/user-attachments/assets/dfb0d64f-8675-4780-a589-5d19e7546be9" />
+
+
+Aquí si nosotros queremos bloquear a un usuario sería como la imagen que está arriba con la comanda: usermod -L (nombre del usuario que quiere bloquear) y después el cat/etc/shadow | grep (y otra vez ponemos el nombre del usuario que queremos bloquear. 
+
+
+<img width="889" height="85" alt="image" src="https://github.com/user-attachments/assets/b7e5c206-4359-4a06-974c-a07750aa8fab" />
+
+Y aquí tenemos el ejemplo para poderlo desbloquear, ponemos casi las mismas comandas que utilizamos al bloquear el usuario   pero esta vez envéz de -L ponemos -U.
+
+
+Los permisos para los archivos y verlos en ls -l
+
+
+<img width="699" height="239" alt="image" src="https://github.com/user-attachments/assets/51a7194c-1899-4681-8f4e-c20d19474666" />
+
+Si quiero modificar el UMASK elpuc fer de nano /etc/login.defs
+
+
+<img width="699" height="239" alt="image" src="https://github.com/user-attachments/assets/7ca7e8f1-1a7a-4adc-a7c8-796c4150db31" />
+
+
+aquí cambiaria el UMASK solo para este usuario
+
+
+<img width="528" height="55" alt="image" src="https://github.com/user-attachments/assets/a8d5a969-aee8-421d-bcf2-a673394f8a22" />
+
+Aquí salimos del root para cambiar la mascara temporalmente.
+
+
+<img width="633" height="325" alt="image" src="https://github.com/user-attachments/assets/4647782c-37ab-4a44-b3e4-a17e8f38b7f3" />
+
+
+aquí podemos ver como cambiar algunos permisos
+
+
+<img width="665" height="268" alt="image" src="https://github.com/user-attachments/assets/4782e85a-6467-4b95-9183-062e426db411" />
+
+Aquí lo podemos cambiar definitivamente, s+osea que si apagamos la computadora las modificaciones se guarden
+
+<img width="726" height="439" alt="image" src="https://github.com/user-attachments/assets/e3916c24-6c31-4eab-a034-4dcd7d6668a6" />
+
+Este sería el resultado de los cambios
+
+<img width="557" height="225" alt="image" src="https://github.com/user-attachments/assets/36606269-6ed6-450e-b504-1d34df54863a" />
+
+
+En mkdir creamos una carperta llamada numeros
+
+setfacl -m user: segon--- numeros
+
+si quiero llevar todas las accesiones que he puesto hago: setfacl -b numeros
+
+setfacl (establir)
+
+getfacl (mirar)     
 
 
 ## Còpies de seguretat i automatització de tasques
