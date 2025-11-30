@@ -174,9 +174,6 @@ Linux es un sistema operativo multiusuario. Esto significa que puede ser utiliza
 
 El Grupo Principal (Primary Group) es el grupo al que pertenece un usuario por defecto y el más importante en términos de permisos de acceso.
 
-<img width="937" height="680" alt="image" src="https://github.com/user-attachments/assets/26dced85-5fdc-411c-9e3e-1bd5d48156a2" />
-
-
 Cuando un usuario crea un nuevo archivo o directorio, el grupo asignado a ese nuevo elemento será, automáticamente, su grupo principal.
 
 ¿Cómo se crea? (Modelo User Private Group - UPG)
@@ -190,6 +187,46 @@ En la mayoría de las distribuciones modernas de Linux (como Red Hat, Fedora, Ub
 
 
 Aquí vemos las comandas que necessitamos
+
+
+<img width="937" height="680" alt="image" src="https://github.com/user-attachments/assets/26dced85-5fdc-411c-9e3e-1bd5d48156a2" />
+
+Aquí observamos UID 0 y GID 0 (el grupo root), su directorio de inicio es /root y su shell es /bin/bash (el shell predeterminado para comandos).
+
+La mayoría de las entradas (como daemon, bin, lp, news) tienen un UID bajo y su shell está establecido a /usr/sbin/nologin. Esto confirma que son cuentas del sistema que no pueden ser utilizadas para iniciar sesión.
+
+También podemos ver la cuenta nobody con UID 65534. Es una cuenta especial con muy pocos privilegios, utilizada por el sistema para ejecutar programas que necesitan acceso limitado al sistema.
+
+
+<img width="349" height="680" alt="image" src="https://github.com/user-attachments/assets/9aadd493-596b-40b7-806e-21f8ffbb31a9" />
+
+
+Aquí muestra el contenido del archivo /etc/shadow: Pueden cambiar la contraseña inmediatamente (0).
+
+La contraseña nunca expira (99999). El aviso de expiración es 7 días antes (aunque nunca expira, es el valor por defecto).
+
+La cuenta no tiene políticas de inactividad o caducidad total.
+
+
+<img width="604" height="675" alt="image" src="https://github.com/user-attachments/assets/e1ec2182-9620-4c28-8ed4-dfb61609cea4" />
+
+
+Ahora estamos viendo el tercer archivo clave para la gestión de usuarios y grupos: /etc/group.
+
+Este archivo define todos los grupos que existen en el sistema y qué usuarios pertenecen a cada grupo como miembros suplementarios (secundarios).
+
+<img width="604" height="675" alt="image" src="https://github.com/user-attachments/assets/f81e9905-0e48-4425-9db7-900b3c104942" />
+
+
+La comanda /etc/gshadow, es el espejo seguro del archivo /etc/group. Este es fundamentalmente un archivo de seguridad que garantiza que las contraseñas de grupo estén protegidas (aunque rara vez se usen) y que el sistema sepa qué usuarios pueden administrar las membresías de los grupos sin necesidad de ser el usuario root.
+
+
+<img width="603" height="406" alt="image" src="https://github.com/user-attachments/assets/a61c3895-8ed0-47e4-943d-65ccbfdcd0c1" />
+
+Aquí podemos ver la creación de un usuario nuevo-
+
+Cómo bloquear a un usuario
+Cómo desbloquear un usuario
 
 
 ## Còpies de seguretat i automatització de tasques
