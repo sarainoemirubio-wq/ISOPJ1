@@ -168,6 +168,9 @@ Estas son las comandas de uso diario para interactuar con los ficheros y directo
 
 
 ## Gestió de processos
+
+Un Gestor de procesos es una herramienta fundamental del sistema operativo. Su función principal es monitorear y controlar la actividad de los programas y servicios que se están ejecutando en el equipo en un momento dado. Este piensa en un programa como un archivo inactivo guardado en el disco duro (por ejemplo, el archivo de Word). Cuando haces doble clic en ese archivo para abrirlo y empieza a funcionar, se convierte en un proceso vivo.
+
 ## Gestió d’usuaris i grups
 
 <img width="1024" height="1024" alt="image" src="https://github.com/user-attachments/assets/469bb666-3fcc-4af3-b4d4-46f86784d688" />
