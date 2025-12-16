@@ -169,7 +169,52 @@ Estas son las comandas de uso diario para interactuar con los ficheros y directo
 
 ## Gestió de processos
 
+
+<img width="710" height="709" alt="image" src="https://github.com/user-attachments/assets/fe30be21-bd3a-4838-9fd8-1d517b38c0fb" />
+
+
 Un Gestor de procesos es una herramienta fundamental del sistema operativo. Su función principal es monitorear y controlar la actividad de los programas y servicios que se están ejecutando en el equipo en un momento dado. Este piensa en un programa como un archivo inactivo guardado en el disco duro (por ejemplo, el archivo de Word). Cuando haces doble clic en ese archivo para abrirlo y empieza a funcionar, se convierte en un proceso vivo.
+
+El objectiu de las comandas en los processos es identificar el gdip
+
+<img width="745" height="660" alt="image" src="https://github.com/user-attachments/assets/33dcc109-745b-46af-9234-39eb097d2866" />
+
+El comando pstree es la forma en que un usuario puede visualizar la información que el Gestor de Procesos está manteniendo.
+
+Esta imagen muestra que cada proceso tiene un proceso "padre" que lo inició (por ejemplo, systemd es el proceso padre de casi todos los demás). Esta jerarquía es fundamental en la gestión de procesos, ya que:
+
+Muestra cómo se inicia la actividad en el sistema (generalmente a partir de systemd, que es el primer proceso al arrancar).
+
+Cuando un proceso padre muere, el sistema operativo (a través del Gestor de Procesos) debe decidir qué hacer con sus procesos hijos.
+
+
+<img width="777" height="862" alt="image" src="https://github.com/user-attachments/assets/01c7d9bf-c76f-4ee9-8922-1c4c5b97e36d" />
+
+
+El proceso que he realizado aquí es la ejecución del comando de Linux pstree -p -h mirela.
+
+Este comando es una variante más detallada del anterior pstree. Se utiliza para mostrar los procesos activos en el sistema en una estructura de árbol, pero con opciones adicionales:
+
+-p: Muestra el ID de Proceso (PID) junto al nombre de cada programa. Por ejemplo, systemd(1807) significa que el proceso systemd tiene el PID 1807.
+
+-h: Resalta el proceso actual y su ascendencia (no visible directamente en la imagen, pero es la función del comando).
+
+mirela: Filtra la salida para mostrar solo los procesos que pertenecen al usuario "mirela".
+
+<img width="701" height="459" alt="image" src="https://github.com/user-attachments/assets/1b44e1f2-5a73-4404-aec6-81a52e86f708" />
+
+
+identificador de processos en el contenido (-h):  identificar processos per al usuari
+en la misma comanda vemos la terminar ( en este caso de mireia porque es el usuari)
+
+También podemos despues de esta comanda ponerle un | grep gnome-terminal
+Al combinar ambos (pstree -p -h mirela | grep gnome-terminal):
+
+El comando pstree genera cientos de líneas que describen el estado de todos los procesos de tu sesión.
+
+La tubería envía todas esas líneas a grep.
+
+grep lee esas líneas y solo muestra aquellas líneas que contienen la cadena de texto gnome-terminal.
 
 ## Gestió d’usuaris i grups
 
