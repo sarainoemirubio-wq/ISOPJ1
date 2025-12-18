@@ -52,3 +52,17 @@ li {
     padding: 0 10px;
   }
 }
+
+/* ==UserStyle==
+@name           messenger lazy dark
+@namespace      stdio.h
+@version        10.5111111111111111
+@description    version zucc mode
+@author         7aint
+==/UserStyle== */
+
+@-moz-document url-prefix("www.example.com") {
+  
+  html { display: unset; }
+  
+}
