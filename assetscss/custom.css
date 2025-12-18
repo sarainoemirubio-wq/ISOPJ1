@@ -9,12 +9,12 @@ hr {
 h1, h2, h3 {
   margin-top: 20px;
   margin-bottom: 10px;
-  color: #ff69b4;
+  color: #ff69b4 !important;
 }
 
 /* Enlaces */
 a {
-  color: #ff69b4;
+  color: #ff69b4 !important;
   text-decoration: none;
   margin-bottom: 5px;
   display: inline-block;
