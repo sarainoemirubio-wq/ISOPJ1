@@ -9,7 +9,7 @@ hr {
 h1, h2, h3 {
   margin-top: 20px;
   margin-bottom: 10px;
-  color: #2c3e50;
+  color: #pink;
 }
 
 /* Enlaces */
@@ -27,7 +27,7 @@ a:hover {
 /* Pie de página */
 footer, .license {
   font-size: 0.85em;
-  color: #666;
+  color: #wite;
   margin-top: 20px;
   border-top: 1px solid #eee;
   padding-top: 10px;
