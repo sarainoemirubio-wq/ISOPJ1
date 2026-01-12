@@ -342,5 +342,164 @@ getfacl (mirar)
 
 
 ## Còpies de seguretat i automatització de tasques
+
+1. Còpies de Seguretat (Backups)
+    Una còpia de seguretat és una duplicació de dades en un suport diferent a l'original per poder recuperar-les en cas de pèrdua, robatori o fallida del sistema.
+
+<img width="804" height="222" alt="image" src="https://github.com/user-attachments/assets/b66f73b8-d8b7-4407-89db-5c1ecbc57be9" />
+
+Para tener una mejor referencia de cuantas copias tengo que hacer:
+
+La Regla d'Or: El Mètode 3-2-1
+Aquest és l'estàndard de la indústria per evitar perdre informació:
+
+3 còpies de les teves dades: L'original i dues còpies.
+
+2 suports diferents: Per exemple, un disc dur extern i el núvol.
+
+1 còpia fora de lloc: Una de les còpies ha d'estar físicament en un lloc diferent (un altre edifici o un servidor remot).
+
+Què necessites per a la restauració?
+1. Còpia Completa (Full Backup)
+És la més senzilla de totes, però la que més espai ocupa.
+
+Què necessites: Només el fitxer (o suport) de l'última còpia completa realitzada.
+
+Com es fa: Simplement selecciones el fitxer de seguretat i el restaures. No depèn de cap altre fitxer anterior ni posterior.
+
+Temps de recuperació: Molt ràpid, ja que només has de bolcar les dades un cop.
+
+2. Còpia Incremental
+És la més complexa de restaurar perquè depèn d'una "cadena" de fitxers.
+
+Què necessites: 1. L'última còpia completa. 2. Tots i cadascun dels fitxers incrementals creats des d'aquella còpia completa fins al moment de la pèrdua.
+
+Com es fa: Primer es restaura la còpia completa, i després el programari va aplicant els canvis de la còpia 1, després de la 2, de la 3... així successivament.
+
+Risc: Si un dels fitxers de la cadena està danyat o es perd, no podràs recuperar el que hi havia a partir d'aquell punt.
+
+3. Còpia Diferencial
+És un punt mitjà entre les dues anteriors.
+
+Què necessites:
+
+L'última còpia completa.
+
+Només l'última còpia diferencial realitzada.
+
+Com es fa: Primer es restaura la completa i després s'aplica l'últim fitxer diferencial (que ja conté tots els canvis acumulats des de la completa).
+
+Temps de recuperació: Més ràpid que l'incremental, ja que només s'han de processar dos fitxers.
+
+
+2. Teoria comandes Backups
+Hay muchos programas però en linux se neccesitan estas comandas:
+
+	1. cp : es una copia simpkle no inteligente, només transfiera localmente, no optimitza(copiar y pegar) 
+	2. rsync : es una eina inteligente que només copia els fitxer modificats y la sincronizacion puede ser local o en remot via ssh
+	3. dd: no es propiamente una copia de seguretat, es una eina para recuperar discos o particion y no es inteligente, copia todos los sectores
+3. Pràctica comandes Backups
+
+crear dos discos de 1gb
+
+<img width="851" height="639" alt="image" src="https://github.com/user-attachments/assets/9aaf4b72-bcc6-4080-b810-feb253393f8f" />
+
+asi se ve:
+
+<img width="739" height="442" alt="image" src="https://github.com/user-attachments/assets/f08c3000-52b6-4443-b70f-3682175b0664" />
+
+1. cp
+2. rsync
+3. dd (clona discos o particions)creo un fixer clonacio en sdc1 y luego
+4. 
+<img width="854" height="843" alt="image" src="https://github.com/user-attachments/assets/085066fa-1591-45a4-9e65-79702b179b85" />
+
+4. Pràctica programes Backups (ya lo haremso norotros)
+
+	1. Deja-Dup
+      És conegut a moltes distribucions simplement com "Còpies de seguretat". És ideal per a usuaris que volen una solució de "configurar i oblidar".
+
+Passos per a la pràctica:
+Instal·lació: Obre el terminal i instal·la'l (si no el tens ja): sudo apt install deja-dup
+
+Configuració:
+
+Busca l'aplicació "Còpies de seguretat" al teu menú d'inici.
+
+Carpetes a desar: Tria una carpeta de prova (per exemple, Documents/Projecte).
+
+Carpetes a ignorar: Pots deixar-ho per defecte (normalment la Papelera i Baixades).
+
+Ubicació de l'emmagatzematge: Tria on vols la còpia (un disc dur extern, una carpeta local diferent o el núvol com Google Drive).
+
+Execució i Automatització:
+
+Fes clic a "Crea una còpia de seguretat ara" per a la primera vegada.
+
+Activa l'interruptor de "Còpia de seguretat automàtica" i tria la freqüència (diària o setmanal).
+
+Restauració:
+
+Prem el botó "Restaura" i veuràs com pots triar la data de la còpia que vols recuperar.
+
+  2. Duplicity
+    Duplicity utilitza el mètode incremental, encripta les dades amb GPG i és extremadament potent per a servidors.
+
+  Passos per a la pràctica:
+  Instal·lació: sudo apt install duplicity
+
+  Fer la primera còpia de seguretat: Imagina que vols copiar la carpeta /home/usuari/dades a una carpeta de backup /home/usuari/backup_dir.
+
+  queda així: duplicity /home/usuari/dades file:///home/usuari/backup_dir
+
+  (Et demanarà una contrasenya per encriptar la còpia. No l'oblidis!)
+
+  3. Llistar els fitxers de la còpia: Per veure què hi ha dins del backup sense restaurar-lo:
+
+  queda així: duplicity list-current-files file:///home/usuari/backup_dir
+
+  4. Restaurar les dades: Per recuperar els fitxers en una carpeta nova anomenada recuperat:
+
+      queda així: duplicity file:///home/usuari/backup_dir /home/usuari/recuperat
+
+  5. Teoria Automatització scripts, cron i anacron
+teoria: 
+
+  6  . Pràctica automatització
+  son dos eines de automatitzacio que ocupen tasques periodiques
+	1. cron . Executa tasques programades en una data i hora especifiques, si el sistema 	esta apagado la tasca es perd, es ideal per a tasques en dates i hores concretes, i per 	accions especifiques de un usuari.
+
+Archius o direcctoris importants:
+
+<img width="1058" height="476" alt="image" src="https://github.com/user-attachments/assets/0cea7641-ed66-4362-b7e0-52ae3932ca21" />
+
+todo lo de aquí afecta todos los uduaris
+
+
+para una especifica: 
+
+<img width="1058" height="476" alt="image" src="https://github.com/user-attachments/assets/9b747b73-229a-46fc-9bc4-e2f4cf2bf266" />
+
+<img width="721" height="118" alt="image" src="https://github.com/user-attachments/assets/f72d0caf-b3e0-4cf4-9171-69ca934eb026" />
+
+permisos:
+<img width="922" height="550" alt="image" src="https://github.com/user-attachments/assets/23b35e23-c296-44fa-870f-f1ff78d169a4" />
+
+<img width="922" height="550" alt="image" src="https://github.com/user-attachments/assets/475d8609-ba4e-486c-b75b-96fcc9e1da82" />
+
+he cambiado el 35
+
+
+
+2. anacron . Es ideal per a executar tasques periodiques on no cal una data i una hora 	especific, normalment s’utilitza per a tasques de manteniments de sistemes i no requireix 	que el sistema estigue obert perquè quan s’obrigue ja es executara, no es com una tasca així 	com el cron (general, guarda tasques)
+
+
+
+
+
+
+
+     
+     
 ## Quotes d’usuaris
 
