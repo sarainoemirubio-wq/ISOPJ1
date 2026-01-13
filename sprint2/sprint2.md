@@ -646,9 +646,75 @@ he cambiado el 35
 2. anacron . Es ideal per a executar tasques periodiques on no cal una data i una hora 	especific, normalment s’utilitza per a tasques de manteniments de sistemes i no requireix 	que el sistema estigue obert perquè quan s’obrigue ja es executara, no es com una tasca així 	com el cron (general, guarda tasques)
 
 
+el 1 al lado del 1 es el temps que tarda en fer un replace:
+
+
+<img width="1126" height="567" alt="image" src="https://github.com/user-attachments/assets/681d2335-70df-4bf7-8449-2bf6fb6f8d18" />
+
+
+<img width="785" height="187" alt="image" src="https://github.com/user-attachments/assets/b79baaa4-a7c5-4df5-a16f-dd40fc823a5f" />
+
+
+Aquí he programado el tiempo que quiere que se ejecute y he intentado mover el script a /etc/cron.daily/, que es donde el sistema busca scripts para ejecutar una vez al día de forma automática.
+
+En el comando cp copies.sh /etc/cron.daily/copies, intendo renombrar el archivo a copies dentro de ese directorio.
 
 
 
+<img width="558" height="45" alt="image" src="https://github.com/user-attachments/assets/19a92a8e-d1f2-432d-a20b-3a3730987a2c" />
+
+quota: se utiliza para visualizar el uso de disco y los límites de espacio asignados a un usuario o a un grupo.
+
+
+<img width="789" height="312" alt="image" src="https://github.com/user-attachments/assets/8c278d38-322a-49ac-b29d-41b4cdd9bc91" />
+
+
+Aquí montamos automáticamente las particiones del disco al arrancar el sistema.
+
+
+
+<img width="903" height="489" alt="image" src="https://github.com/user-attachments/assets/ac94d294-90e8-44dc-8593-5bbab6daca4d" />
+
+
+En esta segunda imagen se observa un intento de activar las cuotas de disco que configuraste en el archivo /etc/fstab
+
+
+
+<img width="1046" height="684" alt="image" src="https://github.com/user-attachments/assets/630355a0-5136-4813-988a-b47885269530" />
+
+
+
+<img width="903" height="489" alt="image" src="https://github.com/user-attachments/assets/bff7e463-20b6-4e83-a0af-b4a3c80ad0e6" />
+
+
+he fet apartir de adduser gina
+
+
+<img width="564" height="80" alt="image" src="https://github.com/user-attachments/assets/c8fd45a0-0de8-4674-8813-93252397f4ac" />
+
+
+aquí comprobo en ls que mire si he fet esta comanda
+
+
+<img width="694" height="27" alt="image" src="https://github.com/user-attachments/assets/3b3d252e-ff61-4184-aebc-be9e5ef29e7c" />
+
+
+dentro del sudo su de gina si ponemos esta comanda comprovaremos lo que el almacenamiento de la misma
+
+repquota /dev/sdc1 veremos los periodes de gracia y ahí si lo podemos programar
+
+
+<img width="493" height="25" alt="image" src="https://github.com/user-attachments/assets/4f6b7663-9ff3-45ea-9d4f-3aa57e3df874" />
+
+
+
+<img width="746" height="275" alt="image" src="https://github.com/user-attachments/assets/cab9f0c6-b55b-49dd-a318-3cdd01c7f0c9" />
+
+
+Tienes la configuración escrita en el archivo, pero el servicio de cuotas no está operativo porque falta montar la partición (mount /mnt/dades) e inicializar los archivos de control.
+
+
+<img width="1033" height="511" alt="image" src="https://github.com/user-attachments/assets/f685f964-dc2a-4718-96a5-e52957dfee75" />
 
 
      
