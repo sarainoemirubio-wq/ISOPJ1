@@ -8,6 +8,10 @@ Este se enfoca en entender y aplicar los conceptos esenciales de los Sistemas de
 
 
 ## Sistemes de fitxers i particions
+
+<img width="1024" height="559" alt="image" src="https://github.com/user-attachments/assets/0edf3341-bbf1-4f6e-a5d3-7f2b95ab0cc1" />
+
+
 Un sistema de ficheros es la estructura que el sistema operativo utiliza para organizar los datos en un dispositivo de almacenamiento (por ejemplo: disco duro, SSD, USB, etc.). Las particiones son divisiones lógicas del disco físico, cada una de las cuales puede tener un sistema de ficheros diferente.
 
 Comenzaremos por las Unidades de Almacenamiento Fundamentales:
@@ -216,7 +220,64 @@ La tubería envía todas esas líneas a grep.
 
 grep lee esas líneas y solo muestra aquellas líneas que contienen la cadena de texto gnome-terminal.
 
+
+kill: señar
+-9: señal per a matar
+
+<img width="894" height="784" alt="image" src="https://github.com/user-attachments/assets/48592d52-01fe-4d96-b1cd-b9a05fd6c748" />
+
+
+ps aux: es una de las herramientas más potentes en Linux para monitorizar el sistema.
+
+Detectar programas bloqueados: Si un programa no responde, usas ps aux para buscar su PID y luego lo cierras a la fuerza.
+
+
+
+
+<img width="901" height="230" alt="image" src="https://github.com/user-attachments/assets/ede37675-2581-496c-b5c2-0272589d3961" />
+
+
+
+Aquí estamos comprobando quién está conectado, qué programas están abiertos y cómo controlar el acceso a través de las contraseñas. Es el flujo típico de un administrador que busca un error o un proceso "colgado" para cerrarlo.
+
+
+
+<img width="902" height="146" alt="image" src="https://github.com/user-attachments/assets/c78b95e2-40b9-4027-8f0a-ba4c21aed50d" />
+
+
+btop es un monitor de recursos del sistema basado en terminal (TUI) que permite visualizar en tiempo real el rendimiento del hardware y la actividad de los procesos.
+
+
+<img width="893" height="871" alt="image" src="https://github.com/user-attachments/assets/f1a27f57-f534-43e1-acc7-04d7460afa8f" />
+
+
+Aquí utilizamos una consola de alto rendimiento (btop) para ver qué impacto tienen esos procesos en la RAM, el disco y el procesador del equipo.
+
+
+
+<img width="769" height="582" alt="image" src="https://github.com/user-attachments/assets/62318e0d-14db-4b9d-a230-19f8b2cb94e1" />
+
+
+
+top actualiza la información cada pocos segundos, permitiéndote ver qué procesos están consumiendo más recursos en este instante.
+
+
+<img width="924" height="791" alt="image" src="https://github.com/user-attachments/assets/3747440f-766f-477f-85cb-353b8d229c33" />
+
+
+el numero negatiu de nite, si lo aumentamos disminuimos la prioridad
+
+
+
+<img width="917" height="91" alt="image" src="https://github.com/user-attachments/assets/4b94bb79-b16c-4c11-a8f0-4ff484d4897d" />
+
+
+cambia la prioridad e un procés que se esta executant
+
+
 ## Gestió d’usuaris i grups
+
+Es la parte del sistema operativo encargada de administrar las identidades. Básicamente, define quién eres (Usuario) y a qué colectivo perteneces (Grupo) para determinar qué acciones tienes permitido realizar.
 
 <img width="1024" height="1024" alt="image" src="https://github.com/user-attachments/assets/469bb666-3fcc-4af3-b4d4-46f86784d688" />
 
@@ -291,7 +352,84 @@ Aquí si nosotros queremos bloquear a un usuario sería como la imagen que está
 
 <img width="889" height="85" alt="image" src="https://github.com/user-attachments/assets/b7e5c206-4359-4a06-974c-a07750aa8fab" />
 
+
 Y aquí tenemos el ejemplo para poderlo desbloquear, ponemos casi las mismas comandas que utilizamos al bloquear el usuario   pero esta vez envéz de -L ponemos -U.
+
+
+El Ciclo de Vida de una Cuenta
+No basta con crear un usuario; hay que gestionarlo a lo largo del tiempo. Aquí es donde entra la seguridad preventiva.
+
+El comando chage 
+
+
+<img width="725" height="424" alt="image" src="https://github.com/user-attachments/assets/6f62decf-5e59-4e4e-8975-4402ef3b43a0" />
+
+
+
+Como vemos en la imagen, este comando sirve para administrar cuándo caduca una contraseña o una cuenta entera. Es vital en empresas para obligar a los empleados a cambiar su clave periódicamente.
+
+
+Comprobación:
+
+<img width="793" height="169" alt="image" src="https://github.com/user-attachments/assets/028fd681-37aa-4975-ae08-1ad68a62524e" />
+
+
+ls /var/m
+
+Opciones clave:
+
+-l (list): La más usada. Te muestra el estado actual (cuándo cambió la clave por última vez, cuándo caduca, etc.).
+
+-M (maxdays): Define cada cuántos días es obligatorio cambiar la contraseña (ej. cada 90 días).
+
+-E (expiredate): Pone una fecha de "muerte" a la cuenta. Útil para becarios o trabajadores temporales.
+
+-W (warndays): Define cuántos días antes de que caduque la clave el sistema empezará a avisar al usuario.
+
+Deficnició=
+
+
+<img width="687" height="503" alt="image" src="https://github.com/user-attachments/assets/28f14abc-49c4-4b3a-a44c-cec3b41ba433" />
+
+
+
+.bash logout: Es un script oculto (por eso empieza con un punto) que se encuentra en el directorio personal del usuario (/home/usuario).
+
+Se ejecuta automáticamente cada vez que un usuario cierra la sesión de un terminal de inicio (login shell).
+
+Se utiliza principalmente para realizar tareas de limpieza.
+
+Ejemplos: Borrar archivos temporales creados durante la sesión, limpiar la pantalla del terminal por seguridad o registrar la hora de desconexión en un archivo de log.
+
+
+
+.bashrc: Es probablemente el archivo de configuración más importante para el usuario en el día a día. También es un archivo oculto en el home.
+
+Se ejecuta cada vez que abres una nueva terminal o ejecutas un terminal interactivo que no es de inicio de sesión.
+
+Define el entorno de trabajo del usuario.
+
+   Aliases: Crear atajos de comandos (ej: que ll ejecute ls -la).
+
+   Variables de entorno: Configurar rutas personalizadas.
+
+   Personalización: Cambiar los colores y la apariencia del "prompt" (el texto que sale antes de escribir un comando).
+
+   
+
+.connexio_ssh: SSH (Secure Shell) es un protocolo que permite acceder y controlar un ordenador de forma remota a través de una red.
+
+Permite gestionar un servidor que está en otra ubicación (o una máquina virtual) como si estuvieras sentado físicamente delante de él.
+
+Características clave:
+
+   Seguridad: Toda la información (incluyendo tu contraseña) viaja encriptada, a diferencia de protocolos antiguos como Telnet.
+
+   Puerto por defecto: Utiliza normalmente el puerto 22.
+
+   Sintaxis básica: ```bash ssh usuario@direccion_ip_del_servidor
+
+
 
 
 Los permisos para los archivos y verlos en ls -l
@@ -314,6 +452,16 @@ Aquí salimos del root para cambiar la mascara temporalmente.
 
 
 <img width="633" height="325" alt="image" src="https://github.com/user-attachments/assets/4647782c-37ab-4a44-b3e4-a17e8f38b7f3" />
+
+
+El Sistema de Permisos
+
+Todo el sentido de tener usuarios y grupos reside en los permisos. En sistemas tipo Linux, cada archivo o carpeta tiene tres niveles de permisos:
+
+
+<img width="531" height="188" alt="image" src="https://github.com/user-attachments/assets/a56db70a-3357-4d73-8fda-24c1795828b0" />
+
+Los permisos suelen ser: R (Lectura/Read), W (Escritura/Write) y X (Ejecución/Execute).
 
 
 aquí podemos ver como cambiar algunos permisos
@@ -480,10 +628,14 @@ para una especifica:
 
 <img width="1058" height="476" alt="image" src="https://github.com/user-attachments/assets/9b747b73-229a-46fc-9bc4-e2f4cf2bf266" />
 
+
 <img width="721" height="118" alt="image" src="https://github.com/user-attachments/assets/f72d0caf-b3e0-4cf4-9171-69ca934eb026" />
+
+
 
 permisos:
 <img width="922" height="550" alt="image" src="https://github.com/user-attachments/assets/23b35e23-c296-44fa-870f-f1ff78d169a4" />
+
 
 <img width="922" height="550" alt="image" src="https://github.com/user-attachments/assets/475d8609-ba4e-486c-b75b-96fcc9e1da82" />
 
