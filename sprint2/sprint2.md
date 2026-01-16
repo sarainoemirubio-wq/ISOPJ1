@@ -721,3 +721,52 @@ Tienes la configuración escrita en el archivo, pero el servicio de cuotas no es
      
 ## Quotes d’usuaris
 
+Es una herramienta de administración de sistemas que permite limitar la cantidad de espacio en disco y el número de archivos (inodes) que un usuario o un grupo puede utilizar en un sistema de archivos.
+
+Es una medida esencial para evitar que un solo usuario llene el disco duro, lo que podría provocar la caída de servicios críticos o impedir que otros usuarios trabajen.
+
+Hay dos tipis de limites más comunes:
+
+Límites de Bloques (Espacio): Controlan la cantidad física de datos (KB, MB, GB) que se pueden guardar.
+
+Las comandas para hacerlo son:
+
+
+<img width="818" height="340" alt="image" src="https://github.com/user-attachments/assets/63c26103-e013-48b2-bd2f-941a456da61b" />
+
+
+Límites de Inodos (Archivos): Controlan la cantidad de archivos y directorios creados. Un usuario podría agotar el sistema creando millones de archivos de 0 bytes si no hay límite de inodos.
+
+Las comandas para hacerlo son:
+
+<img width="828" height="355" alt="image" src="https://github.com/user-attachments/assets/23fcf2af-a473-4254-b27e-d20cb56869a7" />
+
+Aparte de los dos tipus de limites también hay niveles de restricción: Soft vs. Hard
+
+Soft Limit (Límite Flexible): Es una advertencia. El usuario puede superarlo temporalmente durante un "periodo de gracia" (usualmente 7 días).
+
+Hard Limit (Límite Estricto): Es la barrera absoluta. El sistema impedirá escribir un solo byte más una vez alcanzado este punto.
+
+
+<img width="670" height="524" alt="image" src="https://github.com/user-attachments/assets/f92277f1-bedf-49b8-b7aa-7292e88592ea" />
+
+Por otra parte también tenemos El Flujo de Implementación que es el proceso técnico estructurado para habilitar y aplicar restricciones de almacenamiento. Los pasos fundamentales son los siguientes:
+
+1. Preparación y Soporte del Sistema
+
+Soporte del Kernel y Sistema de Archivos: Es imprescindible que el sistema de archivos (como EXT4 o XFS) esté montado con las opciones específicas de cuotas: usrquota para usuarios y grpquota para grupos.
+
+2. Inicialización y Escaneo
+
+Creación de Archivos de Registro: Se generan los archivos de base de datos de cuotas (normalmente llamados aquota.user y aquota.group) en la raíz del sistema de archivos.
+
+3. Activación y Asignación de Límites
+
+Activación con quotaon: Una vez creados los registros, se activa formalmente el cumplimiento de las cuotas.
+
+4. Monitoreo y Mantenimiento
+
+Generación de Informes: Se utiliza el comando repquota para visualizar el estado actual y verificar qué usuarios están cerca de sus límites.
+
+<img width="695" height="228" alt="image" src="https://github.com/user-attachments/assets/841276f9-5d29-45b9-b381-29128aca0366" />
+
