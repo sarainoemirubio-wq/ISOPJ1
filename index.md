@@ -15,10 +15,10 @@ El contenido está bajo licencia [Creative Commons BY-NC-SA 4.0 ES](LICENSE.md).
 
 ### [Sprint 1: Instal·lació, Configuració Inicial i Programari de Base](unidad1/unidad1.md)  
 ### [Sprint 2.Instal·lació, Configuració de Programari de Base i Gestió de Fitxers ](sprint2/sprint2.md)  
-### [Llenguatge de marques XML](./Activitat7.%20Recursos%20per%20crear%20documents%20XML/cdoferta.xml)
-### [Llenguatge de marques XML](./Activitat7.%20Recursos%20per%20crear%20documents%20XML/futbol.xml)
-### [Llenguatge de marques XML](./Activitat7.%20Recursos%20per%20crear%20documents%20XML/pressupost.xml)
-### [Llenguatge de marques XML](./Activitat7.%20Recursos%20per%20crear%20documents%20XML/receptes.xml)
+### [A7 cdoferta.xml](./Activitat7.%20Recursos%20per%20crear%20documents%20XML/cdoferta.xml)
+### [A7 futbol.xml](./Activitat7.%20Recursos%20per%20crear%20documents%20XML/futbol.xml)
+### [A7 pressupost.xml](./Activitat7.%20Recursos%20per%20crear%20documents%20XML/pressupost.xml)
+### [A7 receptes.xml](./Activitat7.%20Recursos%20per%20crear%20documents%20XML/receptes.xml)
 
-[Ir a la carpeta](./Activitat7.%20Recursos%20per%20crear%20documents%20XML)
+
 
