@@ -25,6 +25,79 @@ Para la configuración :
 
 #### Estructura Organitzativa (OU): Crear "carpetes" dins del domini per separar departaments (Vendes, IT, RRHH).
 
+Práctica: 
+Antes de todo tenemosqe preparar las maquinas, dos ubuntus limpios, uno le ponemos client y al otro server, esto para poder diferenciarlas.
+
+Para preparar las maquinas ponemos una nat network enves de adaptador pont, això perquè? Perquè el adaptador pont cada vegada cambiaria la ip.
+
+Comenzaremos por la maquina server.
+Un domini server serveix per a tindre usuaris, grups, equips, recursos i unitats organizatives.
+Aquí antes de empezar con la Instalación LDAP haremos algunos cambios:
+
+al server: sudo su; apt update; ip a; en parametres cambiaos la ip y posem  10.0.2.4; 255.255.255.0; 10.0.2.1 y el DNS: 8.8.8.8, la primera ip es la que nos dona ip a, lo aplicamos y desconectamos y volvemos a connectar, hacemos ping para ver si funciona, de 8.8.8.8 y de www.google.es; luego nano /etc/hostname (y dentro de este ponemos server y borramos lo que haya); luego nano /etc/hosts, a la tercera linea 10.0.2.4 server.sari.cat server (poner lo que dice en la nuestra ip a)
+
+<img width="731" height="430" alt="image" src="https://github.com/user-attachments/assets/4d77b409-7318-432e-99a6-24106ad17a83" />
+
+
+Ara si instalamos LDAP: apt install slaps ldap-utils;
+
+<img width="722" height="423" alt="image" src="https://github.com/user-attachments/assets/ebb94d05-8491-48ea-82b4-f12e23452db3" />
+
+ despues si queremos ver todos los objetos dentro ponemos: slapcat; 
+
+ <img width="468" height="264" alt="image" src="https://github.com/user-attachments/assets/802d4487-2e53-431f-a355-acec7f929f10" />
+
+
+Ahora crearemos la estructura del Domini:
+ponemos: cd Baixades/; ls; unzip arxius.zip; ls; dpkg-reconfigure slapd (esta comanda serveix per a no utilitzar el ldif); en la franja rosa ponemos el domini que hemos puesto: sari.cat, luego nos pide el nom osigue sari, la contraseña de el administrador
+
+<img width="724" height="398" alt="image" src="https://github.com/user-attachments/assets/c50e7909-0fca-4323-9236-28a42d4f84f7" />
+
+luego ls; nano uo.ldif:
+
+<img width="724" height="398" alt="image" src="https://github.com/user-attachments/assets/3b8e8bd1-a727-4eb6-acc5-792e1a5f78af" />
+
+luego ldapadd -c -x -D ‘’cn=admin,dc=sari,dc=cat’’ -W -f uo.ldif (ques esto significa que estamos modificando el nom del domini i els dominis components, -W significa que el comando pedirá la contraseña del usuario indicado con -D y no muestra la contraseña en pantalla; la solicita de forma interactiva.)
+
+
+
+<img width="724" height="101" alt="image" src="https://github.com/user-attachments/assets/8fe04a6a-8ce3-4808-b812-7522b0a416ca" />
+
+
+comanda:  nano usu.ldif aquí modificamos nd: uid=alu1,ou=users,cd=sari,dc=cat, luego  ldapadd -c -x -D ‘’cn=admin,dc=sari,dc=cat’’ -W -f usu.ldif; nano grup.ldif y aquí cambiamos el nombre por el nuestro que es sari;  ldapadd -c -x -D ‘’cn=admin,dc=sari,dc=cat’’ -W -f grup.ldif; slapcat (nos aparecerá lo que hemos creado; 
+
+
+<img width="467" height="267" alt="image" src="https://github.com/user-attachments/assets/a73f0ed5-9810-4594-9e5c-de1162225b44" />
+
+
+Ahora aunque no hemos acabado iremos a la maquina del client:
+
+comanda principal: sudo su; ip a; ping a la anterior osigue la server 10.0.2.4; 
+
+
+<img width="576" height="198" alt="image" src="https://github.com/user-attachments/assets/c67c3c86-b933-4c0d-956a-adeb5a9b7a2d" />
+
+ahora validamos u client al domini: apt update; apt install libnss-ldap libpam-ldap nscd -y; nos sladrá la pantalla rosa, eliminamos la i y que solo tenga dos // y ponemos la ip del server osea  10.0.2.4 intro; dc=sari,dc=cat ningun espacio, intro; version 3; 
+
+
+<img width="731" height="430" alt="image" src="https://github.com/user-attachments/assets/dcf2b543-d42e-469f-986a-fe6f53f4bd88" />
+
+
+si; 
+
+
+<img width="731" height="430" alt="image" src="https://github.com/user-attachments/assets/8a463a6a-5b96-44a2-9e38-7c2305f7b647" />
+
+ahora ponemos esta comanda: cn=admin,dc=sari,dc=cat intro; password; cn=admin,dc=sari,dc=cat intro; dpkg-reconfigure ldap-auth-config; si, si; 3; si; si; password; si; d’acord; 
+
+
+<img width="731" height="430" alt="image" src="https://github.com/user-attachments/assets/944d1b7b-74f8-4f96-bb8d-23b89d197c9e" />
+
+y posem md5:
+
+<img width="731" height="430" alt="image" src="https://github.com/user-attachments/assets/84febabb-8f5e-4ce3-b94e-18608cb47fa6" />
+
+
 
 
 ### Configurar l'accés a recursos locals i remots, garantint la connectivitat i seguretat adequades.
