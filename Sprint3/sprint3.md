@@ -138,6 +138,116 @@ comprobacio de que ha funcionat:
 <img width="338" height="51" alt="image" src="https://github.com/user-attachments/assets/5cde7eb8-a680-4979-9964-9907c620124f" />
 
 
+
+
+esta comanda: gedit dades.ldif, esta es la que abre el editor de texto gráfico gedit para crear o modificar un archivo llamado dades.ldif. Por la extensión .ldif (LDAP Data Interchange Format), es muy probable que te estés preparando para configurar o añadir datos a un servidor de directorio LDAP.
+
+
+<img width="407" height="71" alt="image" src="https://github.com/user-attachments/assets/199c3a25-3e45-4d60-a5ae-69e81d4fc322" />
+
+
+
+Ahora vamos a continuar con la práctica analizando esta secuencia, que es el núcleo de la configuración y carga de datos en un servidor LDAP:
+
+
+
+<img width="1094" height="821" alt="image" src="https://github.com/user-attachments/assets/97b6eb95-d178-4d5e-a1ad-4579d3e92e2a" />
+
+
+en esta imagen estamos reemplazando masivamente todo lo que diga dc=vesper,dc=cat por mi dominio actual: dc=sari,dc=cat. Esto es un paso crucial; si intentamos cargar un archivo .ldif con un dominio base diferente al que tiene configurado mi servidor.
+
+
+
+<img width="487" height="209" alt="image" src="https://github.com/user-attachments/assets/0a2c9613-3956-4f83-9c02-c66e65591359" />
+
+
+slapd es el demonio del servidor OpenLDAP. Al usar dpkg-reconfigure, le estamos diciendo a Linux que quieremos volver a ejecutar el asistente de configuración inicial de este paquete.
+
+
+
+<img width="756" height="67" alt="image" src="https://github.com/user-attachments/assets/d192d86d-b8f5-4bed-87eb-a2803e19d3ab" />
+
+
+ldapadd: Es la herramienta para añadir entradas a un directorio LDAP.
+
+-x: Indica que vas a usar autenticación simple (con usuario y contraseña normales).
+
+-D "cn=admin,dc=sari,dc=cat": Aquí le dices quién eres. Estás iniciando sesión como el administrador (admin) del dominio sari.cat.
+
+-W: Este parámetro fuerza al sistema a pedirte la contraseña de forma segura (por eso en la siguiente línea te aparece Enter LDAP Password:).
+
+-f dades.ldif: Le indica el archivo desde donde debe leer todas las entradas que va a crear.
+
+
+
+
+<img width="754" height="347" alt="image" src="https://github.com/user-attachments/assets/a2370fc2-c422-47cb-ba0a-cf92a38ce9cd" />
+
+-x: Usa autenticación simple.
+
+-LLL: Esto sirve para "limpiar" la salida en la terminal, quitando comentarios y detalles técnicos de la versión de LDAP para que sea más fácil de leer.
+
+-b "dc=sari,dc=cat": Es la "base de búsqueda". Le dices al servidor a partir de qué carpeta principal debe empezar a buscar.
+
+uid=miguel: Este es tu filtro. Le estamos pidiendo que busque al usuario cuyo ID sea "miguel". Como resultado, te devuelve toda la ficha de Miguel Angel con todos sus atributos (nombre, directorio, shell, etc.). Luego vuelvemos a buscar a Miguel, pero al final añades dn uid cn. Con esto le dices al servidor: "Encuentra a Miguel, pero no me muestres toda su ficha, solo enséñame su DN, su UID y su CN". Es una forma muy útil de filtrar la información si solo necesitas datos concretos.
+
+
+
+
+<img width="877" height="617" alt="image" src="https://github.com/user-attachments/assets/af012a2b-7ba2-49a4-b4db-9e036feaee94" />
+
+
+Con objectClass=posixGroup cn, le pidimos al servidor que busque todas las entradas que sean grupos (posixGroup) y que solo te muestre su nombre (cn). Ahí vemos que nos devuelve los grupos "profesores" y "alumnos".
+
+El comando que incluye mail=*gmail.com intenta buscar a cualquier usuario que tenga un correo terminado en gmail.com.
+
+El último comando usa el filtro "(cn=M*)(mail=*))". Esto es una condición "O" (OR). Le estamos diciendo al servidor: "Búscame a cualquier usuario cuyo nombre (cn) empiece por la letra M mayúscula, O que tenga cualquier cosa escrita en el atributo correo (mail)". Como Miguel Angel empieza por M, el servidor te devuelve su ficha completa.
+
+
+
+
+
+<img width="546" height="106" alt="image" src="https://github.com/user-attachments/assets/bb1a4328-75b2-4edf-ae96-9d2aeb346459" />
+
+
+Este archivo tiene instrucciones específicas para modificar algo que ya existe.
+
+dn: ...: Le indica al servidor exactamente a qué usuario quieres aplicarle los cambios (a Miguel Angel).
+
+changetype: modify: Esta es la instrucción clave. Le dice al servidor que la acción a realizar no es añadir, sino modificar una entrada existente.
+
+replace: mail: Especifica el atributo exacto que quieres alterar (el correo). Si no existe, lo creará; si ya existe, lo sobrescribirá.
+
+mail: miguelangel@gmail.com: Finalmente, el nuevo valor que quieres que tenga ese atributo.
+
+
+
+
+
+
+<img width="773" height="331" alt="image" src="https://github.com/user-attachments/assets/f84954de-90bc-47ca-9405-18812942ec5e" />
+
+<img width="574" height="85" alt="image" src="https://github.com/user-attachments/assets/191d6639-232b-4bf9-bf22-874729124896" />
+
+
+Esta instrucción le dirá al servidor que, en lugar de añadir o reemplazar, quieres eliminar exclusivamente el atributo del correo electrónico de la ficha de Miguel Ángel.
+
+
+<img width="945" height="99" alt="image" src="https://github.com/user-attachments/assets/ef813d77-9390-4481-9663-407a333f40f1" />
+
+
+Aqui la consola simplemente nos devuelve el cursor en blanco. Esto significa que el usuario Miguel Ángel ha sido eliminado completamente de la base de datos.
+
+
+
+<img width="553" height="97" alt="image" src="https://github.com/user-attachments/assets/e6520e28-ae71-49ea-a3cc-9d4d6e349c55" />
+
+
+
+
+
+
+
 ### Configurar l'accés a recursos locals i remots, garantint la connectivitat i seguretat adequades.
 
 
